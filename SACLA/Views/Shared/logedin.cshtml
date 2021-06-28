@@ -1,0 +1,60 @@
+﻿@{
+    string user = Session["Username"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("SACLA", "Papers", "Paper", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="list-style: none;">
+                    <li>@Html.ActionLink("Home", "Home", "Paper")</li>
+                    <li>@Html.ActionLink("Papers", "Papers", "Paper")</li>
+                    <li>@Html.ActionLink("News", "News", "Paper")</li>
+                    <li>@Html.ActionLink("Contact Us", "Contact", "Paper")</li>
+                </ul>
+                <div id="login" style="padding-left: 70%;">
+                    <ul class="nav navbar-nav">
+                        <li id="login">@Html.ActionLink("Hello, " + @user, "MyPapers", "Paper")</li>
+                        @if (user == "admin")
+                        {
+                            <li id="login" style="display:none;">@Html.ActionLink("MyPapers", "MyPapers", "Paper")</li>
+                        }
+                        else
+                        {
+                            <li id="login">@Html.ActionLink("MyPapers", "MyPapers", "Paper")</li>
+                        }
+                        <li id="login">@Html.ActionLink("Logout", "Login", "Account")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

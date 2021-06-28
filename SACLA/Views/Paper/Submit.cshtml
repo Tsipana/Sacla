@@ -1,0 +1,54 @@
+﻿@model SACLA.Models.Paper
+
+@{
+    Layout = "~/Views/Shared/logedin.cshtml";
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Paper</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PaperTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PaperTitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PaperTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PaperAbstract, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PaperAbstract, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PaperAbstract, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TopicId, "TopicId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("TopicId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TopicId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" style="display:inline">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" style="background-color:cornflowerblue;color:white;" onclick="togglePopup()"/>
+            <button onclick="window.location.href='~/Views/Paper/MyPapers.cshtml'" class="btn btn-default" style="background-color:white;color:cornflowerblue;border-color:cornflowerblue;">Back to List</button>
+            @*<form action="~/Views/Paper/MyPapers.cshtml">
+                <input type="button" value="Back to List" class="btn btn-default" style="background-color:white;color:cornflowerblue;border-color:cornflowerblue;" />
+            </form>*@
+        </div>
+    </div>
+</div>
+}

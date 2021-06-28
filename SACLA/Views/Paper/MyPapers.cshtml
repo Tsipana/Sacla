@@ -1,0 +1,81 @@
+﻿@model IEnumerable<SACLA.Models.Paper>
+
+@{
+    Layout = "~/Views/Shared/logedin.cshtml";
+    ViewBag.Title = "MyPapers";
+}
+
+<h2>MyPapers</h2>
+<div>
+
+</div>
+
+<p>
+    @Html.ActionLink("Submit New Paper", "Submit")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperDateSubmitted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.topic.TopicName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaperId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaperTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaperDateSubmitted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.topic.TopicName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PaperId }, new { @class="classname"}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PaperId }, new { @class = "classname2" })
+            </td>
+        </tr>
+    }
+
+</table>
+<style>
+    a.classname {
+        border: thin;
+        text-align: center;
+        background-color: darkorange;
+        border-radius: 5px;
+        color: black;
+        display: block;
+        width: 50px;
+        height: 25px;
+    }
+
+    a.classname2 {
+        border: thin;
+        text-align: center;
+        border-radius: 5px;
+        background-color: crimson;
+        color: white;
+        display: block;
+        width: 50px;
+        height: 25px;
+    }
+
+    
+</style>
+
